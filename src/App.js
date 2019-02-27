@@ -4,7 +4,7 @@ import Navbar from './components/NavBar'
 import LoginFormContainer from './components/LoginFormContainer'
 import EventsListContainer from './components/EventsListContainer'
 import EventDetailsContainer from './components/EventDetailsContainer'
-// import TicketsDetailsContainer from './components/TicketDetailsContainer'
+import TicketDetailsContainer from './components/TicketDetailsContainer'
 
 
 class App extends Component {
@@ -20,7 +20,7 @@ class App extends Component {
           <Route exact path="/events" component={EventsListContainer} />
           <Route exact path="/" render={() => <Redirect to="/events" />} />
           <Route exact path="/events/:id" component={EventDetailsContainer} />
-          {/* <Route exact path="/events/:eventId/tickets/:ticketId" component={TicketDetailsContainer} */}
+          <Route exact path="/events/:eventId/tickets/:ticketId" component={TicketDetailsContainer} />
           {/* <Route path="/" exact component={EventsListContainer} /> */}
           {/* <Route path="/events/:id" component={EventDetailsContainer} /> */}
 

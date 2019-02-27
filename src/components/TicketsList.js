@@ -46,7 +46,11 @@ function TicketList(props) {
             </TableCell>
             <TableCell align="right">{ticket.price}</TableCell>
             <TableCell align="right">{ticket.description}</TableCell>
-            <TableCell align="right"><CommentIcon/></TableCell>
+            <TableCell align="right">
+              <Link to={`/events/${props.props.props.match.params.id}/tickets/${ticket.id}`} >
+                <CommentIcon style={{ color: 'darkgray' }}/>
+              </Link>
+            </TableCell>
           </TableRow>
         ))}
       </TableBody>

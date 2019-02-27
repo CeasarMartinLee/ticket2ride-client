@@ -61,11 +61,10 @@ export const createTicket = (data, event_id) => (dispatch, getState) => {
     .catch(console.error)
 }
 
-export const loadTicket = (id) => (dispatch, getState) => {
+export const loadTicket = (event_id,ticket_id) => (dispatch, getState) => {
   const jwt = getState().currentUser
 
-
-  request(`${baseUrl}/tickets/${id}`)
+  request(`${baseUrl}/events/${event_id}/tickets/${ticket_id}`)
     .set('Authorization', `Bearer ${jwt}`)
     .then(response => {
       console.log(response)
@@ -73,6 +72,19 @@ export const loadTicket = (id) => (dispatch, getState) => {
     })
     .catch(console.error)
 }
+
+// export const loadTicket = (id) => (dispatch, getState) => {
+//   const jwt = getState().currentUser
+
+
+//   request(`${baseUrl}/tickets/${id}`)
+//     .set('Authorization', `Bearer ${jwt}`)
+//     .then(response => {
+//       console.log(response)
+//       dispatch(ticketFetched(response.body))
+//     })
+//     .catch(console.error)
+// }
 
 export const deleteTicket = (id) => (dispatch, getState) => {
   const jwt = getState().currentUser
