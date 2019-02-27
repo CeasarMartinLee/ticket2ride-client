@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import EventDetails from './EventDetails'
 import {loadEvent, updateEvent, deleteEvent} from '../actions/events'
+import TicketsListContainer from './TicketsListContainer'
 
 class EventDetailsContainer extends React.Component {
   componentDidMount() {
@@ -61,7 +62,9 @@ class EventDetailsContainer extends React.Component {
     if (!this.props.event) return null
 
 
-    return <EventDetails 
+    return (
+      <div>
+        <EventDetails 
         event={this.props.event} 
         onDelete={this.deleteEventWithId}
         onChange={this.onChange}
@@ -70,7 +73,10 @@ class EventDetailsContainer extends React.Component {
         editMode={this.state.editMode}
         formValues={this.state.formValues}
         />
-    // return null
+        <TicketsListContainer props={this.props}/>
+      </div>
+
+    )
   }
 }
 

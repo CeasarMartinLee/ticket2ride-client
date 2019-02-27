@@ -1,6 +1,4 @@
 import request from 'superagent'
-import moment from 'moment'
-
 
 export const EVENTS_FETCHED = 'EVENTS_FETCHED'
 export const EVENT_FETCHED = 'EVENT_FETCHED'
