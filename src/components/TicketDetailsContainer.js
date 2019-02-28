@@ -1,16 +1,20 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import TicketDetails from './TicketDetails'
-import {loadTicket, deleteTicket, updateTicket} from '../actions/tickets'
+import {loadTicket, deleteTicket, updateTicket, loadRiskOfTicket} from '../actions/tickets'
 import CommentsListContainer from './CommentsListContainer'
 
 class TicketDetailsContainer extends React.Component {
   componentDidMount() {
     console.log(this.props)
     this.props.loadTicket(Number(this.props.match.params.eventId), Number(this.props.match.params.ticketId))
+    this.props.loadRiskOfTicket(Number(this.props.match.params.eventId), Number(this.props.match.params.ticketId))
+
   }
 
-  state = { editMode: false }
+  state = { 
+    editMode: false
+   }
 
   onEdit = () => {
     this.setState({
@@ -48,9 +52,10 @@ class TicketDetailsContainer extends React.Component {
 
   render() {
     console.log(this.props)
-
+    console.log(this.state)
     console.log(this.props.ticket)
 
+      
     if (!this.props.ticket) return null
 
 
@@ -74,7 +79,8 @@ class TicketDetailsContainer extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  ticket: state.ticket
+  ticket: state.ticket,
+  risk: state.risk
 })
 
-export default connect(mapStateToProps, {loadTicket, deleteTicket, updateTicket})(TicketDetailsContainer)
+export default connect(mapStateToProps, {loadTicket, deleteTicket, updateTicket, loadRiskOfTicket})(TicketDetailsContainer)

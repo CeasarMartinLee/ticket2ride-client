@@ -7,7 +7,7 @@ import GridListTileBar from '@material-ui/core/GridListTileBar';
 import { Button } from '@material-ui/core'
 import TicketForm from './TicketForm'
 import IconButton from '@material-ui/core/IconButton';
-import InfoIcon from '@material-ui/icons/Info';
+// import InfoIcon from '@material-ui/icons/Info';
 import ListSubheader from '@material-ui/core/ListSubheader';
 
 const styles = theme => ({
@@ -50,7 +50,8 @@ function TicketDetails(props) {
                                 actionIcon={ 
                                     <IconButton className={classes.icon}>
                                       <div>
-                                        RISK: <InfoIcon style={{ opacity: 0.7, color: 'lightgray' }}/>  
+                                        RISK: {props.props.risk.toFixed(2)}
+                                        {/* <InfoIcon style={{ opacity: 0.7, color: 'lightgray' }}/>   */}
                                       </div>
                     
                                     </IconButton>

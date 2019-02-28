@@ -5,7 +5,7 @@ import event from './event'
 import tickets from './tickets'
 import ticket from './ticket'
 import comments from './comments'
-
+import risk from './risk'
 
 
 export default combineReducers({
@@ -14,5 +14,6 @@ export default combineReducers({
   event,
   tickets,
   ticket,
-  comments
+  comments,
+  risk
 })

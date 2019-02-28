@@ -2,6 +2,7 @@ import request from 'superagent'
 
 export const TICKETS_FETCHED = 'TICKETS_FETCHED'
 export const TICKET_FETCHED = 'TICKET_FETCHED'
+export const RISK_FETCHED = 'RISK_FETCHED'
 export const TICKET_CREATE_SUCCESS = 'TICKET_CREATE_SUCCESS'
 export const TICKET_DELETE_SUCCESS = 'TICKET_DELETE_SUCCESS'
 export const TICKET_UPDATE_SUCCESS = 'TICKET_UPDATE_SUCCESS'
@@ -21,6 +22,11 @@ const ticketCreateSuccess = ticket => ({
 const ticketFetched = ticket => ({
   type: TICKET_FETCHED,
   payload: ticket
+})
+
+const riskFetched = risk => ({
+  type: RISK_FETCHED,
+  payload: risk
 })
 
 const ticketDeleteSuccess = id => ({
@@ -73,18 +79,16 @@ export const loadTicket = (event_id,ticket_id) => (dispatch, getState) => {
     .catch(console.error)
 }
 
-// export const loadTicket = (id) => (dispatch, getState) => {
-//   const jwt = getState().currentUser
+export const loadRiskOfTicket = (event_id,ticket_id) => dispatch => {
+  request(`${baseUrl}/events/${event_id}/tickets/${ticket_id}/risk`)
+    .then(response => {
+      console.log(response)
 
+      dispatch(riskFetched(response.body)) 
+    })
 
-//   request(`${baseUrl}/tickets/${id}`)
-//     .set('Authorization', `Bearer ${jwt}`)
-//     .then(response => {
-//       console.log(response)
-//       dispatch(ticketFetched(response.body))
-//     })
-//     .catch(console.error)
-// }
+    .catch(console.error);
+};
 
 export const deleteTicket = (id) => (dispatch, getState) => {
   const jwt = getState().currentUser
