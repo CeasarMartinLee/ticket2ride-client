@@ -5,6 +5,8 @@ import LoginFormContainer from './components/LoginFormContainer'
 import EventsListContainer from './components/EventsListContainer'
 import EventDetailsContainer from './components/EventDetailsContainer'
 import TicketDetailsContainer from './components/TicketDetailsContainer'
+import RegisterFormContainer from './components/RegisterFormContainer'
+import LogoutPage from './components/LogoutPage';
 
 
 class App extends Component {
@@ -15,8 +17,9 @@ class App extends Component {
           <Navbar />
         </div>
         <div>
+          <Route exact path="/register" component={RegisterFormContainer} />
           <Route exact path="/login" component={LoginFormContainer} />
-          <Route exact path="/logout" render={() => <Redirect to="/events" />} />
+          <Route exact path="/logout" component={LogoutPage} />
           <Route exact path="/events" component={EventsListContainer} />
           <Route exact path="/" render={() => <Redirect to="/events" />} />
           <Route exact path="/events/:id" component={EventDetailsContainer} />

@@ -78,7 +78,7 @@ function EventForm(props) {
         <form className={classes.form} onSubmit={props.onSubmit}>
           <FormControl margin="normal" required fullWidth>
             <InputLabel htmlFor="name">Event Name</InputLabel>
-            <Input id="name" name="name" required={true} autoFocus onChange={props.onChange} value={props.values.name} />
+            <Input id="name" name="name" required={true} onChange={props.onChange} value={props.values.name} />
           </FormControl>
           <FormControl margin="normal" required fullWidth>
             <InputLabel htmlFor="description">Description</InputLabel>

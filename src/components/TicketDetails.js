@@ -50,7 +50,7 @@ function TicketDetails(props) {
                                 actionIcon={ 
                                     <IconButton className={classes.icon}>
                                       <div>
-                                        RISK: {props.props.risk.toFixed(2)}
+                                        RISK: {props.props.risk}
                                         {/* <InfoIcon style={{ opacity: 0.7, color: 'lightgray' }}/>   */}
                                       </div>
                     
