@@ -9,6 +9,8 @@ import TicketForm from './TicketForm'
 import IconButton from '@material-ui/core/IconButton';
 // import InfoIcon from '@material-ui/icons/Info';
 import ListSubheader from '@material-ui/core/ListSubheader';
+import { connect } from 'react-redux'
+
 
 const styles = theme => ({
     root: {
@@ -47,47 +49,43 @@ function TicketDetails(props) {
                                 subtitle={
                                     <span> {props.ticket.description} <br /> {'seller: ' + props.ticket.user.firstName + " " + props.ticket.user.lastName}</span>
                                 }
-                                actionIcon={ 
+                                actionIcon={
                                     <IconButton className={classes.icon}>
-                                      <div>
-                                        RISK: {props.props.risk}
-                                        {/* <InfoIcon style={{ opacity: 0.7, color: 'lightgray' }}/>   */}
-                                      </div>
-                    
+                                        <div>
+                                            RISK: {props.props.risk}
+                                            {/* <InfoIcon style={{ opacity: 0.7, color: 'lightgray' }}/>   */}
+                                        </div>
+
                                     </IconButton>
-                                  }
+                                }
                             />
                         </GridListTile>
                     </GridList>
                 </div >
-                <div style={{ textAlign: "center" }}>
-                    <Button onClick={() => props.onDelete(props.ticket.id)}>DELETE</Button>
-                    <Button onClick={props.onEdit}>Edit</Button>
-                </div>
+                {props.authenticated &&
+                    <div style={{ textAlign: "center" }}>
+                        <Button onClick={() => props.onDelete(props.ticket.id)}>DELETE</Button>
+                        <Button onClick={props.onEdit}>Edit</Button>
+                    </div>
+                }
             </div>}
 
 
         </div>
 
     )
-    // return (
-    //     <div>
-    //     {props.editMode && <EventForm onSubmit={props.onSubmit} onChange={props.onChange} values={props.formValues} />}
-
-    //     {!props.editMode && <div>
-    //         <h1>Event: {props.event.name}</h1>
-    //         <button onClick={() => props.onDelete(props.event.id)}>DELETE</button>
-    //         <button onClick={props.onEdit}>Edit</button>
-
-    //     </div>}
-    // </div>
-    // )
 }
+
+const mapStateToProps = state => ({
+    events: state.events,
+    authenticated: !!state.currentUser
+})
 
 TicketDetails.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(TicketDetails);
+export default connect(mapStateToProps)(withStyles(styles)(TicketDetails))
+
 
 

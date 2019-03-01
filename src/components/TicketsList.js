@@ -32,7 +32,7 @@ const styles = theme => ({
   },
   table: {
     minWidth: 0,
-    },
+  },
   row: {
     '&:nth-of-type(odd)': {
       backgroundColor: theme.palette.background.default,
@@ -45,33 +45,47 @@ function TicketList(props) {
   console.log(props)
   return (
     <Paper className={classes.root}>
-    <Table className={classes.table}>
-      <TableHead>
-        <TableRow >
-          <CustomTableCell>Ticket Seller</CustomTableCell>
-          <CustomTableCell align="right">Ticket Price</CustomTableCell>
-          <CustomTableCell align="right">Comments</CustomTableCell>
-          <CustomTableCell align="right">Description</CustomTableCell>
-        </TableRow>
-      </TableHead>
-      <TableBody>
-        {props.tickets.map(ticket => (
-          <TableRow hover key={ticket.id}>
-            <CustomTableCell component="th" scope="row">
-              {ticket.user.firstName}
-            </CustomTableCell>
-            <CustomTableCell align="right">{ticket.price}</CustomTableCell>
-            <CustomTableCell align="right">
-              <Link to={`/events/${props.props.props.match.params.id}/tickets/${ticket.id}`} >
-                <CommentIcon style={{ color: 'darkgray' }}/>
-              </Link>
-            </CustomTableCell>
-            <CustomTableCell align="right">{ticket.description}</CustomTableCell>
+      <Table className={classes.table}>
+        <TableHead>
+          <TableRow >
+            <CustomTableCell>Seller</CustomTableCell>
+            <CustomTableCell align="right">Price</CustomTableCell>
+            <CustomTableCell align="right">Comment</CustomTableCell>
+            <CustomTableCell align="right">Description</CustomTableCell>
           </TableRow>
-        ))}
-      </TableBody>
-    </Table>
-  </Paper>
+        </TableHead>
+        <TableBody>
+          {props.tickets.map(ticket => (
+            <TableRow hover key={ticket.id}>
+              {/* <CustomTableCell component="th" scope="row"> */}
+              <CustomTableCell >
+                {ticket.user.firstName}
+              </CustomTableCell>
+              <CustomTableCell align="right" style={{fontWeight: 900}}>
+                {(() =>{
+                  switch (true) {
+                    case (ticket.risk < 30):
+                      return <div style={{ color: 'green' }}>{ticket.price}</div>
+                    case (ticket.risk >= 30 && ticket.risk < 70):
+                      return <div style={{ color: 'orange' }}>{ticket.price}</div>
+                    case (ticket.risk >= 70):
+                      return <div style={{ color: 'red' }}>{ticket.price}</div>
+                    default:
+                      return null;
+                  }
+                })()}
+              </CustomTableCell>
+              <CustomTableCell align="right">
+                <Link to={`/events/${props.props.props.match.params.id}/tickets/${ticket.id}`} >
+                  <CommentIcon style={{ color: 'darkgray' }} />
+                </Link>
+              </CustomTableCell>
+              <CustomTableCell align="right">{ticket.description}</CustomTableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </Paper>
   )
 }
 

@@ -6,6 +6,8 @@ import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import { Button } from '@material-ui/core'
 import EventForm from './EventForm'
+import {connect} from 'react-redux'
+
 
 const styles = theme => ({
     root: {
@@ -48,8 +50,12 @@ function EventDetails(props) {
                         </GridListTile>
                     </GridList>
                 </div>
+                {props.authenticated && 
+                <div>
                 <Button onClick={() => props.onDelete(props.event.id)}>DELETE</Button>
                 <Button onClick={props.onEdit}>Edit</Button>
+                </div>
+                 } 
             </div>}
 
 
@@ -63,6 +69,13 @@ EventDetails.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(EventDetails);
+const mapStateToProps = state => ({
+    events: state.events,
+    authenticated: !!state.currentUser
+  })
+
+
+export default connect(mapStateToProps)(withStyles(styles)(EventDetails))
+
 
 

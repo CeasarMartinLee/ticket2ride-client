@@ -13,14 +13,14 @@ import Paper from '@material-ui/core/Paper';
 const styles = theme => ({
   root: {
     width: '100%',
-    maxWidth: 360,
+    maxWidth: 1000,
     backgroundColor: theme.palette.background.paper,
   },
   inline: {
     display: 'inline',
   },
   paper: {
-    width: '40%',
+    width: '90%',
     marginTop: theme.spacing.unit * 3,
     overflowX: 'auto',
     marginLeft: 'auto',

@@ -23,6 +23,7 @@ class EventsListContainer extends React.Component {
         <EventsList
           events={this.props.events}
           onDelete={this.deleteEventWithId}
+          authenticated={this.props.authenticated}
         />
         {this.props.authenticated && <CreateEventFormContainer />}
         
