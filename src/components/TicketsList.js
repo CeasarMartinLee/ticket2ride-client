@@ -10,18 +10,34 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import CommentIcon from '@material-ui/icons/Comment';
 
+const CustomTableCell = withStyles(theme => ({
+  head: {
+    backgroundColor: theme.palette.common.default,
+    color: theme.palette.common.black,
+    fontSize: 14,
+
+  },
+  body: {
+    fontSize: 12,
+  },
+}))(TableCell);
 
 const styles = theme => ({
   root: {
-    width: '70%',
+    width: '98%',
     marginTop: theme.spacing.unit * 3,
     overflowX: 'auto',
     marginLeft: 'auto',
     marginRight: 'auto',
   },
   table: {
-    minWidth: 1000,
-  },
+    minWidth: 0,
+    },
+  row: {
+    '&:nth-of-type(odd)': {
+      backgroundColor: theme.palette.background.default,
+    },
+  }
 });
 
 function TicketList(props) {
@@ -31,26 +47,26 @@ function TicketList(props) {
     <Paper className={classes.root}>
     <Table className={classes.table}>
       <TableHead>
-        <TableRow>
-          <TableCell>Ticket Seller</TableCell>
-          <TableCell align="right">Ticket Price</TableCell>
-          <TableCell align="right">Description</TableCell>
-          <TableCell align="right">Comments</TableCell>
+        <TableRow >
+          <CustomTableCell>Ticket Seller</CustomTableCell>
+          <CustomTableCell align="right">Ticket Price</CustomTableCell>
+          <CustomTableCell align="right">Comments</CustomTableCell>
+          <CustomTableCell align="right">Description</CustomTableCell>
         </TableRow>
       </TableHead>
       <TableBody>
         {props.tickets.map(ticket => (
-          <TableRow key={ticket.id}>
-            <TableCell component="th" scope="row">
+          <TableRow hover key={ticket.id}>
+            <CustomTableCell component="th" scope="row">
               {ticket.user.firstName}
-            </TableCell>
-            <TableCell align="right">{ticket.price}</TableCell>
-            <TableCell align="right">{ticket.description}</TableCell>
-            <TableCell align="right">
+            </CustomTableCell>
+            <CustomTableCell align="right">{ticket.price}</CustomTableCell>
+            <CustomTableCell align="right">
               <Link to={`/events/${props.props.props.match.params.id}/tickets/${ticket.id}`} >
                 <CommentIcon style={{ color: 'darkgray' }}/>
               </Link>
-            </TableCell>
+            </CustomTableCell>
+            <CustomTableCell align="right">{ticket.description}</CustomTableCell>
           </TableRow>
         ))}
       </TableBody>

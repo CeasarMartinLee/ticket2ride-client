@@ -8,6 +8,32 @@ import GridListTileBar from '@material-ui/core/GridListTileBar';
 // import ListSubheader from '@material-ui/core/ListSubheader';
 import IconButton from '@material-ui/core/IconButton';
 import InfoIcon from '@material-ui/icons/Info';
+import Pagination from 'jw-react-pagination';
+//credits to http://jasonwatmore.com/post/2018/04/10/npm-jw-react-pagination-component
+
+const customLabels = {
+  
+      first: '<<',
+      last: '>>',
+      previous: '<',
+      next: '>'
+  
+}
+
+const customStyles = {
+  ul: {
+    backgroundColor: 'white',
+    fontSize: 12
+  },
+  li: {
+
+  },
+  a: {
+    color: 'blue'
+  }
+};
+
+
 
 const styles = theme => ({
   root: {
@@ -19,53 +45,70 @@ const styles = theme => ({
   },
   gridList: {
     width: 1000,
-    height: 600,
+    height: 560,
   },
   icon: {
     color: 'rgba(255, 255, 255, 0.54)',
   },
 });
 
-function EventsList(props) {
-  const { classes } = props;
-  console.log(props)
-  return (
-    <div className={classes.root}>
-      <GridList cellHeight={180} cols={3} className={classes.gridList}>
-        <GridListTile key="Subheader" cols={3} style={{ height: 10 }}>
-          {/* <ListSubheader component="div">EVENTS</ListSubheader> */}
-        </GridListTile>
-        {props.events.map(event => (
-          <GridListTile key={event.id}>
-            <img src={event.logo} alt={event.name} />
-            <GridListTileBar
-              title={event.name}
-              subtitle={
-                <span> {event.description} <br /> {event.startDate}  - {event.endDate}</span>
-              }
-              actionIcon={
-                <IconButton className={classes.icon}>
-                  
-                  <Link to={`/events/${event.id}`} ><InfoIcon style={{ opacity: 0.7, color: 'lightgray' }}/></Link>
+class EventsList extends React.Component {
 
-                </IconButton>
-              }
-            />
-          </GridListTile>
-        ))}
-      </GridList>
-    </div>
-  )
-  // return (
-  //   <ul>
-  //   {props.events.map(event => (
-  //     <li key={event.id}>
-  //       <Link to={`/events/${event.id}`}>{event.name}</Link>
-  //       {/* <button onClick={()=>props.onDelete(event.id)}>x</button> */}
-  //     </li>
-  //   ))}
-  // </ul>
-  // )
+  constructor() {
+    super();
+
+    this.state = {
+      pageOfItems: []
+    };
+
+    // bind function in constructor instead of render (https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md)
+    this.onChangePage = this.onChangePage.bind(this);
+  }
+
+  onChangePage(pageOfItems) {
+    // update state with new page of items
+    this.setState({ pageOfItems: pageOfItems });
+  }
+
+  render() {
+    const { classes } = this.props
+
+    return (
+      <div>
+        <div className={classes.root}>
+          <GridList cellHeight={180} cols={3} className={classes.gridList}>
+            <GridListTile key="Subheader" cols={3} style={{ height: 10 }}>
+              {/* <ListSubheader component="div">EVENTS</ListSubheader> */}
+            </GridListTile>
+            {this.state.pageOfItems.map(event => (
+              <GridListTile key={event.id}>
+                <img src={event.logo} alt={event.name} />
+                <GridListTileBar
+                  title={event.name}
+                  subtitle={
+                    <span> {event.description} <br /> {event.startDate}  - {event.endDate}</span>
+                  }
+                  actionIcon={
+                    <IconButton className={classes.icon}>
+
+                      <Link to={`/events/${event.id}`} ><InfoIcon style={{ opacity: 0.7, color: 'lightgray' }} /></Link>
+
+                    </IconButton>
+                  }
+                />
+              </GridListTile>
+            ))}
+          </GridList>
+        </div >
+        <div style={{textAlign: 'center'}}>
+          <Pagination items={this.props.events} onChangePage={this.onChangePage} pageSize={9} styles={customStyles} labels={customLabels} />
+        </div>
+      </div>
+
+
+    )
+  }
+
 }
 
 EventsList.propTypes = {

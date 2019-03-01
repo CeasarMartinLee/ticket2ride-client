@@ -22,7 +22,7 @@ function NavBar(props) {
         <AppBar position="static">
             <Toolbar>
                 <Typography variant="h6" color="inherit" className={classes.grow}>
-                    <Button  color="inherit" className="" onClick={() => {props.history.push('/events')}}> Uber4Tickets </Button>
+                    <Button  color="inherit" className="" onClick={() => {props.history.push('/events')}}> Ticket2Ride </Button>
                 </Typography>
                 <div>
                     {!props.authenticated &&

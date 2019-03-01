@@ -16,7 +16,7 @@ const styles = theme => ({
         backgroundColor: theme.palette.background.paper,
     },
     gridList: {
-        width: 700,
+        width: 1420,
         height: 250,
     },
     icon: {
@@ -56,18 +56,7 @@ function EventDetails(props) {
         </div>
 
     )
-    // return (
-    //     <div>
-    //     {props.editMode && <EventForm onSubmit={props.onSubmit} onChange={props.onChange} values={props.formValues} />}
 
-    //     {!props.editMode && <div>
-    //         <h1>Event: {props.event.name}</h1>
-    //         <button onClick={() => props.onDelete(props.event.id)}>DELETE</button>
-    //         <button onClick={props.onEdit}>Edit</button>
-
-    //     </div>}
-    // </div>
-    // )
 }
 
 EventDetails.propTypes = {
