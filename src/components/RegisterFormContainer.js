@@ -32,7 +32,10 @@ class RegisterFormContainer extends React.Component {
   render() {
     console.log(this.props)
     console.log(this.state)
-    if (this.props.register.success) return <Redirect to="/login" />;
+    if (this.props.register.success) {
+      this.props.register.success = false
+      return <Redirect to="/login" />
+    }
     console.log(this.props)
     return <RegisterForm onSubmit={this.onSubmit} onChange={this.onChange} values={this.state} />
   }

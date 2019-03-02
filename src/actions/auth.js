@@ -50,7 +50,7 @@ export const registerUser = (firstName, lastName, email, password) => dispatch =
     .post(`${baseUrl}/users`)
     .send({firstName, lastName, email, password})
     .then(response => {
-      console.log(response)
+      console.log(response,'admin<==================')
       dispatch(registerSuccess(response.body.jwt))
     })
     .catch(error => {

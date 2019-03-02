@@ -80,6 +80,19 @@ export const loadEvent = (id) => (dispatch, getState) => {
       .catch(console.error)
   }
 
+  export const updateEvent = (id, data) => (dispatch, getState) => {
+    const jwt = getState().currentUser
+
+    request
+        .put(`${baseUrl}/events/${id}`)
+        .set('Authorization', `Bearer ${jwt}`)
+        .send(data)
+        .then(response => {
+        dispatch(eventUpdateSuccess(response.body))
+      })
+      .catch(console.error)
+  }
+
 export const deleteEvent = (id) => (dispatch, getState) => {
     const jwt = getState().currentUser
 
@@ -92,27 +105,4 @@ export const deleteEvent = (id) => (dispatch, getState) => {
     .catch(console.error)
 }
 
-// export const deleteEvent = function (id) {
-//     return function (dispatch) {
-//        //Do something with id and dispatch
-//         request
-//           .delete(`${baseUrl}/events/${id}`)
-//           .then(response => {
-//             dispatch(eventDeleteSuccess(id))
-//           })
-//           .catch(console.error)
-//       }
-// }
 
-export const updateEvent = (id, data) => (dispatch, getState) => {
-    const jwt = getState().currentUser
-
-    request
-        .patch(`${baseUrl}/events/${id}`)
-        .set('Authorization', `Bearer ${jwt}`)
-        .send(data)
-        .then(response => {
-        dispatch(eventUpdateSuccess(response.body))
-      })
-      .catch(console.error)
-  }
