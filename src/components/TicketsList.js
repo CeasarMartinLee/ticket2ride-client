@@ -186,7 +186,7 @@ class TicketList extends React.Component {
                       </TableCell>
                       <TableCell align="left" >
                       <Link to={`/events/${this.props.props.props.match.params.id}/tickets/${n.id}`} >
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M21.99 4c0-1.1-.89-2-1.99-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4-.01-18zM17 11h-4v4h-2v-4H7V9h4V5h2v4h4v2z"/></svg>
+                        <svg style={{color: 'gray'}} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M21.99 4c0-1.1-.89-2-1.99-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4-.01-18zM17 11h-4v4h-2v-4H7V9h4V5h2v4h4v2z"/></svg>
                       </Link>
                     </TableCell >
                       <TableCell align="left" >{n.description}</TableCell>
@@ -226,100 +226,3 @@ TicketList.propTypes = {
 };
 
 export default withStyles(styles)(TicketList);
-
-// import React from 'react'
-// import { Link } from 'react-router-dom'
-// import PropTypes from 'prop-types';
-// import { withStyles } from '@material-ui/core/styles';
-// import Table from '@material-ui/core/Table';
-// import TableBody from '@material-ui/core/TableBody';
-// import TableCell from '@material-ui/core/TableCell';
-// import TableHead from '@material-ui/core/TableHead';
-// import TableRow from '@material-ui/core/TableRow';
-// import Paper from '@material-ui/core/Paper';
-// import CommentIcon from '@material-ui/icons/Comment';
-
-// const CustomTableCell = withStyles(theme => ({
-//   head: {
-//     backgroundColor: theme.palette.common.default,
-//     color: theme.palette.common.black,
-//     fontSize: 14,
-
-//   },
-//   body: {
-//     fontSize: 12,
-//   },
-// }))(TableCell);
-
-// const styles = theme => ({
-//   root: {
-//     width: '98%',
-//     marginTop: theme.spacing.unit * 3,
-//     overflowX: 'auto',
-//     marginLeft: 'auto',
-//     marginRight: 'auto',
-//   },
-//   table: {
-//     minWidth: 0,
-//   },
-//   row: {
-//     '&:nth-of-type(odd)': {
-//       backgroundColor: theme.palette.background.default,
-//     },
-//   }
-// });
-
-// function TicketList(props) {
-//   const { classes } = props;
-//   console.log(props)
-//   return (
-//     <Paper className={classes.root}>
-//       <Table className={classes.table}>
-//         <TableHead>
-//           <TableRow >
-//             <CustomTableCell>Seller</CustomTableCell>
-//             <CustomTableCell align="right">Price</CustomTableCell>
-//             <CustomTableCell align="right">Comment</CustomTableCell>
-//             <CustomTableCell align="right">Description</CustomTableCell>
-//           </TableRow>
-//         </TableHead>
-//         <TableBody>
-//           {props.tickets.map(ticket => (
-//             <TableRow hover key={ticket.id}>
-//               {/* <CustomTableCell component="th" scope="row"> */}
-//               <CustomTableCell >
-//                 {ticket.user.firstName}
-//               </CustomTableCell>
-              // <CustomTableCell align="right" style={{fontWeight: 900}}>
-              //   {(() =>{
-              //     switch (true) {
-              //       case (ticket.risk < 30):
-              //         return <div style={{ color: 'green' }}>{ticket.price}</div>
-              //       case (ticket.risk >= 30 && ticket.risk < 70):
-              //         return <div style={{ color: 'orange' }}>{ticket.price}</div>
-              //       case (ticket.risk >= 70):
-              //         return <div style={{ color: 'red' }}>{ticket.price}</div>
-              //       default:
-              //         return null;
-              //     }
-              //   })()}
-              // </CustomTableCell>
-              // <CustomTableCell align="right">
-              //   <Link to={`/events/${props.props.props.match.params.id}/tickets/${ticket.id}`} >
-              //     <CommentIcon style={{ color: 'darkgray' }} />
-              //   </Link>
-              // </CustomTableCell>
-//               <CustomTableCell align="right">{ticket.description}</CustomTableCell>
-//             </TableRow>
-//           ))}
-//         </TableBody>
-//       </Table>
-//     </Paper>
-//   )
-// }
-
-// TicketList.propTypes = {
-//   classes: PropTypes.object.isRequired,
-// };
-
-// export default withStyles(styles)(TicketList);

@@ -8,6 +8,7 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 
 const styles = theme => ({
@@ -50,44 +51,22 @@ function CommentsList(props) {
                 </React.Fragment>
               }
             />
+
+                  {props.authenticated && 
+                    <div>
+                    <DeleteIcon className={classes.icon} style={{color: 'gray'}} onClick={() => props.onDelete(comment.id)}/>
+                      {/* <Button onClick={() => props.onDelete(comment.id)}>DELETE</Button> */}
+
+                    </div>
+                  }
           </ListItem>
+          
         ))}
       </List>
+
     </Paper>
 
-
-
   )
-  // return (
-  //   <Paper className={classes.root}>
-  //   <Table className={classes.table}>
-  //     <TableHead>
-  //       <TableRow>
-  //         <TableCell>Ticket Seller</TableCell>
-  //         <TableCell align="right">Ticket Price</TableCell>
-  //         <TableCell align="right">Description</TableCell>
-  //         <TableCell align="right">Comments</TableCell>
-  //       </TableRow>
-  //     </TableHead>
-  //     <TableBody>
-  //       {props.tickets.map(ticket => (
-  //         <TableRow key={ticket.id}>
-  //           <TableCell component="th" scope="row">
-  //             {ticket.user.firstName}
-  //           </TableCell>
-  //           <TableCell align="right">{ticket.price}</TableCell>
-  //           <TableCell align="right">{ticket.description}</TableCell>
-  //           <TableCell align="right">
-  //             <Link to={`/events/${props.props.props.match.params.id}/tickets/${ticket.id}`} >
-  //               <CommentIcon style={{ color: 'darkgray' }}/>
-  //             </Link>
-  //           </TableCell>
-  //         </TableRow>
-  //       ))}
-  //     </TableBody>
-  //   </Table>
-  // </Paper>
-  // )
 }
 
 CommentsList.propTypes = {

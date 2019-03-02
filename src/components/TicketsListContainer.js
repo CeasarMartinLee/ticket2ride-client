@@ -1,6 +1,5 @@
 import React from 'react'
 import {loadTickets} from '../actions/tickets'
-// import {loadTickets, deleteTicket} from '../actions/tickets'
 import {connect} from 'react-redux'
 import TicketsList from './TicketsList'
 import CreateTicketFormContainer from './CreateTicketFormContainer'
@@ -11,10 +10,10 @@ class TicketsListContainer extends React.Component {
     this.props.loadTickets(this.props.props.match.params.id)
   }
 
-  deleteTicketWithId = (id) => {
-    // this.props.deleteTicket(id)
-    this.props.history.push('/')
-  }
+  // deleteTicketWithId = (id) => {
+  //   this.props.deleteTicket(id)
+  //   this.props.history.push('/events/' + this.props.props.match.params.id)
+  // }
 
   render() {
     console.log(this.props, 'statetoprops')
@@ -39,5 +38,4 @@ const mapStateToProps = state => ({
   authenticated: !!state.currentUser
 })
 
-// export default connect(mapStateToProps, {loadTickets, deleteTicket})(TicketsListContainer)
 export default connect(mapStateToProps, {loadTickets})(TicketsListContainer)

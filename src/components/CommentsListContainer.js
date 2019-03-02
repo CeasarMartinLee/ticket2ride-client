@@ -1,5 +1,5 @@
 import React from 'react'
-import {loadComments} from '../actions/comments'
+import {loadComments, deleteComment} from '../actions/comments'
 import {connect} from 'react-redux'
 import CommentsList from './CommentsList'
 import CreateCommentFormContainer from './CreateCommentFormContainer'
@@ -10,10 +10,14 @@ class CommentsListContainer extends React.Component {
     this.props.loadComments(Number(this.props.props.match.params.eventId), Number(this.props.props.match.params.ticketId))
   }
 
-  // deleteCommentWithId = (id) => {
-  //   this.props.deleteComment(id)
-  //   this.props.history.push('/')
-  // }
+  deleteCommentWithId = (id) => {
+    this.props.deleteComment(id)
+    console.log((`/events/${this.props.props.match.params.eventId}/tickets/${this.props.props.match.params.ticketId}`))
+    console.log(this.props)
+    this.props.props.history
+      .push(`/events/${this.props.props.match.params.eventId}/tickets/${this.props.props.match.params.ticketId}`)
+    
+  }
 
   render() {
     console.log(this.props, 'statetoprops')
@@ -24,6 +28,7 @@ class CommentsListContainer extends React.Component {
         <CommentsList
           comments={this.props.comments}
           onDelete={this.deleteCommentWithId}
+          authenticated={this.props.authenticated}
         />
         {this.props.authenticated && <CreateCommentFormContainer props={this.props}/>}
         
@@ -37,4 +42,4 @@ const mapStateToProps = state => ({
   authenticated: !!state.currentUser
 })
 
-export default connect(mapStateToProps, {loadComments})(CommentsListContainer)
+export default connect(mapStateToProps, {loadComments, deleteComment})(CommentsListContainer)
