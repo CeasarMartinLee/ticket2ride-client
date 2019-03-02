@@ -42,7 +42,7 @@ class TicketDetailsContainer extends React.Component {
     this.setState({
       editMode: false
     })
-    this.props.updateTicket(this.props.ticket.id, this.state.formValues)
+    this.props.updateTicket(Number(this.props.match.params.eventId), Number(this.props.match.params.ticketId), this.state.formValues)
   }
 
   deleteTicketWithId = () => {

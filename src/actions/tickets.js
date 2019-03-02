@@ -88,7 +88,22 @@ export const loadRiskOfTicket = (event_id,ticket_id) => dispatch => {
     })
 
     .catch(console.error);
-};
+}
+
+
+export const updateTicket = (event_id,ticket_id, data) => (dispatch, getState) => {
+  const jwt = getState().currentUser
+
+  request
+    .put(`${baseUrl}/events/${event_id}/tickets/${ticket_id}`)
+    .set('Authorization', `Bearer ${jwt}`)
+    .send(data)
+    .then(response => {
+      console.log(response)
+      dispatch(ticketUpdateSuccess(response.body))
+    })
+    .catch(console.error)
+}
 
 export const deleteTicket = (id) => (dispatch, getState) => {
   const jwt = getState().currentUser
@@ -98,19 +113,6 @@ export const deleteTicket = (id) => (dispatch, getState) => {
     .set('Authorization', `Bearer ${jwt}`)
     .then(response => {
       dispatch(ticketDeleteSuccess(id))
-    })
-    .catch(console.error)
-}
-
-export const updateTicket = (id, data) => (dispatch, getState) => {
-  const jwt = getState().currentUser
-
-  request
-    .patch(`${baseUrl}/tickets/${id}`)
-    .set('Authorization', `Bearer ${jwt}`)
-    .send(data)
-    .then(response => {
-      dispatch(ticketUpdateSuccess(response.body))
     })
     .catch(console.error)
 }
