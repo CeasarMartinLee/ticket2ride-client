@@ -61,31 +61,13 @@ const styles = theme => ({
   },
 });
 
-function getAddress() {
-  var options = {
-    enableHighAccuracy: true,
-    timeout: 5000,
-    maximumAge: 0
-  };
-  
-  function success(pos) {
-    var crd = pos.coords;
-  
-    console.log('Your current position is:');
-    console.log(`Latitude : ${crd.latitude}`);
-    console.log(`Longitude: ${crd.longitude}`);
-    console.log(`More or less ${crd.accuracy} meters.`);
-  }
-  
-  function error(err) {
-    console.warn(`ERROR(${err.code}): ${err.message}`);
-  }
-  
-  navigator.geolocation.getCurrentPosition(success, error, options);
 
-}
-function TicketForm(props) {
+
+
+function TicketEditForm(props) {
   const { classes } = props;
+  console.log(props)
+
   return (
     <main className={classes.main}>
       <CssBaseline />
@@ -112,6 +94,19 @@ function TicketForm(props) {
             <InputLabel htmlFor="picture">Picture</InputLabel>
             <Input name="picture" id="picture" required={false} multiline={true} rows={2} onChange={props.onChange} value={props.values.picture} />
           </FormControl>
+          {/* <FormControl margin="normal" required fullWidth>
+            <InputLabel htmlFor="address">Event Location</InputLabel>
+            <Input name="address" id="address" required={false} multiline={true} rows={2} onChange={props.onChange} value={props.values.address} />
+          </FormControl>
+            <FormControl margin="normal" required fullWidth>
+            <InputLabel htmlFor="latitude">Latitude</InputLabel>
+            <Input name="latitude" id="latitude" required={false} value={props.props.props.crd.latitude}/>
+          </FormControl>
+          <FormControl margin="normal" required fullWidth>
+            <InputLabel htmlFor="latitude">Longitude</InputLabel>
+            <Input name="latitude" id="latitude" required={false} value={props.props.props.crd.longitude}/>
+          </FormControl> */}
+
           <Button
             type="submit"
             fullWidth
@@ -122,14 +117,16 @@ function TicketForm(props) {
             Save
           </Button>
         </form>
+        {/* <Button onClick={()=>getAddress()}>Get Geolocation</Button> */}
+
       </Paper>
     </main>
   );
 
 }
 
-TicketForm.propTypes = {
+TicketEditForm.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(TicketForm);
+export default withStyles(styles)(TicketEditForm);

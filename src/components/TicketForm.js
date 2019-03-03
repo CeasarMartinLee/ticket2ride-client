@@ -95,13 +95,10 @@ function TicketForm(props) {
             <Input name="picture" id="picture" required={false} multiline={true} rows={2} onChange={props.onChange} value={props.values.picture} />
           </FormControl>
           <FormControl margin="normal" required fullWidth>
-            <InputLabel htmlFor="address">Current Address</InputLabel>
+            <InputLabel htmlFor="address">Event Location</InputLabel>
             <Input name="address" id="address" required={false} multiline={true} rows={2} onChange={props.onChange} value={props.values.address} />
           </FormControl>
-          <div>
-
-          </div>
-          <FormControl margin="normal" required fullWidth>
+            <FormControl margin="normal" required fullWidth>
             <InputLabel htmlFor="latitude">Latitude</InputLabel>
             <Input name="latitude" id="latitude" required={false} value={props.props.props.crd.latitude}/>
           </FormControl>
@@ -109,6 +106,7 @@ function TicketForm(props) {
             <InputLabel htmlFor="latitude">Longitude</InputLabel>
             <Input name="latitude" id="latitude" required={false} value={props.props.props.crd.longitude}/>
           </FormControl>
+
           <Button
             type="submit"
             fullWidth

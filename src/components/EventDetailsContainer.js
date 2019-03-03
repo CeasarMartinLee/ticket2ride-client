@@ -64,7 +64,7 @@ class EventDetailsContainer extends React.Component {
 
   deleteEventWithId = () => {
     this.props.deleteEvent(this.props.event.id)
-    this.props.history.push('/')
+    this.props.history.push('/events')
   }
 
   render() {

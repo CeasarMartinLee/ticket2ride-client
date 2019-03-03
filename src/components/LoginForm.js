@@ -13,7 +13,10 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 
+
+
 const styles = theme => ({
+  
   main: {
     width: 'auto',
     display: 'block', // Fix IE 11 issue.
@@ -47,6 +50,7 @@ const styles = theme => ({
 
 function LoginForm(props) {
   const { classes } = props;
+
   console.log(props)
   return (
     <main className={classes.main}>

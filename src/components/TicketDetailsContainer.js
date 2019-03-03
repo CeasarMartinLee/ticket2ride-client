@@ -23,6 +23,10 @@ class TicketDetailsContainer extends React.Component {
         price: this.props.ticket.price,
         description: this.props.ticket.description,
         picture: this.props.ticket.logo,
+        address: this.props.ticket.address,
+        latitude: this.props.ticket.latitude,
+        longitude: this.props.ticket.longitude,
+
       }
     })
   }

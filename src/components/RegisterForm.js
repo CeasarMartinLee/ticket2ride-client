@@ -26,7 +26,7 @@ const styles = theme => ({
     },
   },
   paper: {
-    marginTop: theme.spacing.unit * 15,
+    marginTop: theme.spacing.unit * 6,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',

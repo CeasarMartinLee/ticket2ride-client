@@ -5,7 +5,7 @@ import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import { Button } from '@material-ui/core'
-import TicketForm from './TicketForm'
+import TicketEditForm from './TicketEditForm'
 import IconButton from '@material-ui/core/IconButton';
 // import InfoIcon from '@material-ui/icons/Info';
 import ListSubheader from '@material-ui/core/ListSubheader';
@@ -29,7 +29,7 @@ const styles = theme => ({
     },
     submit: {
         marginRight: 5,
-      },
+    },
 });
 
 function TicketDetails(props) {
@@ -37,7 +37,7 @@ function TicketDetails(props) {
     console.log(props)
     return (
         <div>
-            {props.editMode && <TicketForm onSubmit={props.onSubmit} onChange={props.onChange} values={props.formValues} />}
+            {props.editMode && <TicketEditForm onSubmit={props.onSubmit} onChange={props.onChange} values={props.formValues} editMode={props.editMode}/>}
 
             {!props.editMode && <div>
                 <div className={classes.root}>
@@ -67,7 +67,7 @@ function TicketDetails(props) {
                 </div >
                 {props.authenticated &&
                     <div style={{ textAlign: "center" }}>
-                        <Button             
+                        <Button
                             type="submit"
                             variant="contained"
                             color="primary"
@@ -75,7 +75,7 @@ function TicketDetails(props) {
                             onClick={() => props.onDelete(props.ticket.id)}>
                             DELETE
                         </Button>
-                        <Button 
+                        <Button
                             type="submit"
                             variant="contained"
                             color="primary"
@@ -83,22 +83,20 @@ function TicketDetails(props) {
                             onClick={props.onEdit}>
                             Edit
                         </Button>
-                        <Button 
+                        <Button
                             type="submit"
                             variant="contained"
                             color="primary"
                             className={classes.submit}>
-                            <a target="_blank" 
-                                style={{color: 'white', textDecoration: 'none'}}
+                            <a target="_blank"
+                                style={{ color: 'white', textDecoration: 'none' }}
                                 href={`https://m.uber.com/?action=setPickup&client_id=vMcj9zupwJzceQu-o5HfextfZHjJxdUb&pickup=my_location&dropoff[formatted_address]=${props.ticket.address}&dropoff[latitude]=${props.ticket.latitude}&dropoff[longitude]=${props.ticket.longitude}`}>
-                                Dispatch UBER
+                                Buy + UBER
                             </a>
                         </Button>
                     </div>
                 }
             </div>}
-
-
         </div>
 
     )

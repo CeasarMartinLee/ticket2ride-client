@@ -24,6 +24,9 @@ const styles = theme => ({
     icon: {
         color: 'rgba(255, 255, 255, 0.54)',
     },
+    submit: {
+        marginRight: 5,
+    },
 });
 
 function EventDetails(props) {
@@ -52,8 +55,22 @@ function EventDetails(props) {
                 </div>
                 {props.authenticated && 
                 <div>
-                <Button onClick={() => props.onDelete(props.event.id)}>DELETE</Button>
-                <Button onClick={props.onEdit}>Edit</Button>
+                <Button 
+                    type="submit"
+                    variant="contained"
+                    color="primary"
+                    className={classes.submit}
+                    onClick={() => props.onDelete(props.event.id)}>
+                    DELETE
+                </Button>
+                <Button 
+                    type="submit"
+                    variant="contained"
+                    color="primary"
+                    className={classes.submit}                
+                    onClick={props.onEdit}>
+                    Edit
+                </Button>
                 </div>
                  } 
             </div>}
