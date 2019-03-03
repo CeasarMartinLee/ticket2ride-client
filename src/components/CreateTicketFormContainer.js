@@ -7,23 +7,32 @@ class CreateTicketFormContainer extends React.Component {
   state = {
     price: '',
     description: '',
-    picture: ''
+    picture: '',
+    address: '',
+    latitude: '',
+    longitude: ''
   }
 
   onChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value
     })
+    this.setState({
+      latitude: this.props.props.crd.latitude,
+      longitude: this.props.props.crd.longitude
+    })
   }
 
   onSubmit = (event) => {
     event.preventDefault()
-    console.log(this.state)
     this.props.createTicket(this.state, this.props.props.props.match.params.id)
     this.setState({
       price: '',
       description: '',
-      picture: ''
+      picture: '',
+      address: '',
+      latitude: '',
+      longitude: ''
     })
 
   }
@@ -32,10 +41,12 @@ class CreateTicketFormContainer extends React.Component {
     console.table(this.state)
     console.log(this.props)
     console.log(this.state)
+    if (!this.props.props.crd) return <div>Loading Ticket Form</div>
     return (<TicketForm
       onSubmit={this.onSubmit}
       onChange={this.onChange}
       values={this.state}
+      props={this.props}
     />)
   }
 }

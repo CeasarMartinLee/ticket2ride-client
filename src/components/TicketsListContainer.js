@@ -26,7 +26,7 @@ class TicketsListContainer extends React.Component {
           props={this.props}
           onDelete={this.deleteTicketWithId}
         />
-        {this.props.authenticated && <CreateTicketFormContainer props={this.props}/>}
+        {this.props.authenticated && <CreateTicketFormContainer props={this.props} />}
         
       </React.Fragment>
     )

@@ -44,6 +44,19 @@ class EventDetailsContainer extends React.Component {
     this.props.updateEvent(this.props.event.id, this.state.formValues)
   }
 
+  success = (pos) => {
+    var crd = pos.coords;
+
+    console.log('Your current position is:');
+    console.log(`Latitude : ${crd.latitude}`);
+    console.log(`Longitude: ${crd.longitude}`);
+    console.log(`More or less ${crd.accuracy} meters.`);
+    console.log(crd)
+    this.crd = crd
+    console.log(this)
+
+  }
+
 //   deleteEventWithId = id => _event => {
 //     this.props.deleteEvent(id)
 //     this.props.history.push('/')
@@ -55,9 +68,21 @@ class EventDetailsContainer extends React.Component {
   }
 
   render() {
-    console.log(this.props)
+    var options = {
+      enableHighAccuracy: true,
+      timeout: 10000,
+      maximumAge: 0
+    };
 
+    function error(err) {
+      console.warn(`ERROR(${err.code}): ${err.message}`);
+    }
+
+    navigator.geolocation.getCurrentPosition(this.success, error, options);
+
+    console.log(this.props)
     console.log(this.props.event)
+
 
     if (!this.props.event) return null
 
@@ -73,7 +98,7 @@ class EventDetailsContainer extends React.Component {
         editMode={this.state.editMode}
         formValues={this.state.formValues}
         />
-        <TicketsListContainer props={this.props}/>
+        <TicketsListContainer props={this.props} crd={this.crd}/>
       </div>
 
     )

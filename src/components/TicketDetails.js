@@ -27,6 +27,9 @@ const styles = theme => ({
     icon: {
         color: 'rgba(255, 255, 255, 0.54)',
     },
+    submit: {
+        marginRight: 5,
+      },
 });
 
 function TicketDetails(props) {
@@ -52,7 +55,7 @@ function TicketDetails(props) {
                                 actionIcon={
                                     <IconButton className={classes.icon}>
                                         <div>
-                                            RISK: {props.props.risk}
+                                            RISK: {props.props.risk}%
                                             {/* <InfoIcon style={{ opacity: 0.7, color: 'lightgray' }}/>   */}
                                         </div>
 
@@ -64,8 +67,33 @@ function TicketDetails(props) {
                 </div >
                 {props.authenticated &&
                     <div style={{ textAlign: "center" }}>
-                        <Button onClick={() => props.onDelete(props.ticket.id)}>DELETE</Button>
-                        <Button onClick={props.onEdit}>Edit</Button>
+                        <Button             
+                            type="submit"
+                            variant="contained"
+                            color="primary"
+                            className={classes.submit}
+                            onClick={() => props.onDelete(props.ticket.id)}>
+                            DELETE
+                        </Button>
+                        <Button 
+                            type="submit"
+                            variant="contained"
+                            color="primary"
+                            className={classes.submit}
+                            onClick={props.onEdit}>
+                            Edit
+                        </Button>
+                        <Button 
+                            type="submit"
+                            variant="contained"
+                            color="primary"
+                            className={classes.submit}>
+                            <a target="_blank" 
+                                style={{color: 'white', textDecoration: 'none'}}
+                                href={`https://m.uber.com/?action=setPickup&client_id=vMcj9zupwJzceQu-o5HfextfZHjJxdUb&pickup=my_location&dropoff[formatted_address]=${props.ticket.address}&dropoff[latitude]=${props.ticket.latitude}&dropoff[longitude]=${props.ticket.longitude}`}>
+                                Dispatch UBER
+                            </a>
+                        </Button>
                     </div>
                 }
             </div>}

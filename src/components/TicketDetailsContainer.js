@@ -47,7 +47,7 @@ class TicketDetailsContainer extends React.Component {
 
   deleteTicketWithId = () => {
     this.props.deleteTicket(this.props.ticket.id)
-    this.props.history.push('/')
+    this.props.history.push(`/events/${this.props.match.params.eventId}`)
   }
 
   render() {
